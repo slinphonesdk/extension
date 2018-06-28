@@ -3,10 +3,12 @@
 1.工程gradle.allprojects.repositories添加<br>
 ```
  maven { url "https://github.com/slinphonesdk/extension/raw/master" }
+ maven { url "https://github.com/slinphonesdk/common/raw/master" }
 ```
 2.项目gradle.dependencies添加<br>
 ```
  implementation 'com.udp:extension:1.0.0'
+ implementation 'com.udp:common:1.0'
 ```
 医护分机
 --------
