@@ -6,7 +6,7 @@
 ```
 2.项目gradle.dependencies添加<br>
 ```
- implementation 'com.udp.extension:extension:1.0.0'
+ implementation 'com.udp:extension:1.0.0'
 ```
 医护分机
 --------
