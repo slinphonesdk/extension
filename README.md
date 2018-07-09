@@ -8,9 +8,9 @@
 ```
 2.项目gradle.dependencies添加<br>
 ```
- implementation 'com.udp:extension:1.0.2'
- implementation 'com.udp:common:1.0.1'
+ implementation 'com.udp:extension:1.0.3'
 ```
+*打包需知：common打包后，依赖至extension，再打extension包*
 医护分机
 --------
 ```
