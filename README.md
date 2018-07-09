@@ -4,6 +4,7 @@
 ```
  maven { url "https://github.com/slinphonesdk/extension/raw/master" }
  maven { url "https://github.com/slinphonesdk/common/raw/master" }
+ maven { url "https://github.com/slinphonesdk/lib/raw/master" }
 ```
 2.项目gradle.dependencies添加<br>
 ```
@@ -220,3 +221,56 @@ private ArrayList<String> list = new ArrayList<>();
 ```
 门口分机
 --------
+```
+ private void exPhoneSetup() {
+        ExPhoneManager.init(this,"1108", DeviceType.doorSide, "cbo");
+        ExPhoneManager.getInstance().addListener(new ExPhoneListener() {
+            @Override
+            public void msgCallBack(ParamsHeader paramsHeader, MsgCommand msgCommand, final CMC.CMCRequestParam.Body body) { }
+
+            @Override
+            public void sessionStatus(final String sessionID) {
+                Log.e("ppt","sessionID: "+sessionID);
+                MainActivityDemo.this.sessionID = sessionID;
+                textView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setText("sessionID: "+sessionID);
+                    }
+                });
+            }
+
+            @Override
+            public void sipCallIncomingReceived() { }
+
+            @Override
+            public void sipCallEnd(){
+            }
+
+            @Override
+            public void keepLineState(PhoneLineState state, String sip) {
+
+            }
+        });
+    }
+
+    public void register(View v) {
+        ExPhoneManager.getInstance().registerOfTreatAndNurse();
+        textView.post(new Runnable() {
+            @Override
+            public void run() {
+                textView.setText("移动-医护分机-已注册");
+            }
+        });
+    }
+
+    public void unregister(View v) {
+        ExPhoneManager.getInstance().unregister();
+        textView.post(new Runnable() {
+            @Override
+            public void run() {
+                textView.setText("移动-医护分机-已取消");
+            }
+        });
+    }
+```
