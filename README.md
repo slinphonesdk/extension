@@ -16,9 +16,13 @@
 ```
 private ArrayList<String> list = new ArrayList<>();
     private void exphoneSetup() {
+	// 初始化方法
         ExphoneManager.init(this,"100000", DeviceType.treatAndNurse, "mas");
-        ExphoneManager.getInstance().addListener(new ExphoneListener() {
-            @Override
+// 添加监听        
+ExphoneManager.getInstance().addListener(new ExphoneListener() {
+
+// 收到信息           
+ @Override
             public void msgCallBack(ParamsHeader paramsHeader, Msgcommand msgcommand, final CMC.CMCRequestParam.Body body) {
                 Log.e("ppt", "exphone ----");
                 sessionID = body.getSessionID();
@@ -43,14 +47,17 @@ private ArrayList<String> list = new ArrayList<>();
                 }
             }
 
+	   // 发起呼叫得到的会话id，在主动取消通话时需要传
             @Override
             public void sessionStatus(String sessionID) { }
 
+	   // sip 自动应答后会调用此方法，更新界面
             @Override
             public void sipCallIncomingReceived() {
 
             }
 
+	    // 通话结束 上传呼叫记录
             @Override
             public void sipCallEnd() {
             }
@@ -58,17 +65,19 @@ private ArrayList<String> list = new ArrayList<>();
     }
 
 
-
+    // 发起呼叫 
     public void startCall(View v) {
         ExphoneManager.getInstance().call();
     }
 
+// 接听呼叫
     public void receive(View v) {
         if (sessionID != null) {
             ExphoneManager.getInstance().acceptCall(sessionID);
         }
     }
 
+// 挂断
     public void hangup(View v) {
         if (sessionID != null) {
             ExphoneManager.getInstance().hangupOrCancelCall(sessionID);
@@ -85,6 +94,7 @@ private ArrayList<String> list = new ArrayList<>();
         });
     }
 
+// 拒绝
     public void refuse(View v) {
         if (sessionID != null) {
             ExphoneManager.getInstance().refusingToAnswer(sessionID);
