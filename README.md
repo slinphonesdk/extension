@@ -1,3 +1,8 @@
+new:
+1.增加卫浴分机呼叫接口
+2.增加卫浴分机取消接口
+3.增加医护分机主动呼叫接口
+
 // 添加依赖<br>
 ================
 1.工程gradle.allprojects.repositories添加<br>
@@ -8,7 +13,7 @@
 ```
 2.项目gradle.dependencies添加<br>
 ```
- implementation 'com.udp:extension:1.0.4'
+ implementation 'com.udp:extension:1.0.7'
 ```
 *打包需知：common打包后，依赖至extension，再打extension包*
 医护分机
