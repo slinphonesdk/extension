@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.udp</groupId>
   <artifactId>extension</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
@@ -32,9 +32,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>InfoDemo</groupId>
+      <groupId>com.udp</groupId>
       <artifactId>common</artifactId>
-      <version>unspecified</version>
+      <version>1.1.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
