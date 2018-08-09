@@ -1,6 +1,11 @@
 new:
-1.MsgCommand register state
-2.MsgCommang cancel call success
+exPhoneManager.reConfig("1508001", DeviceType.bedHeader, "bed14", new ExPhoneManager.RegisterListener() {
+            @Override
+            public void state(Boolean bool) {
+                Log.e("REG", bool.toString());
+            }
+        });
+
 // 添加依赖<br>
 ================
 1.工程gradle.allprojects.repositories添加<br>
