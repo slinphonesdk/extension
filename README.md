@@ -1,7 +1,6 @@
 new:
-1.common 1.1.1 fix some grammer.
-2.lib 1.0.8 fix reset bug
-
+1.MsgCommand register state
+2.MsgCommang cancel call success
 // 添加依赖<br>
 ================
 1.工程gradle.allprojects.repositories添加<br>
@@ -178,6 +177,14 @@ ExphoneManager.getInstance().addListener(new ExphoneListener() {
                             textView.setText("呼叫得到的：sessionID:"+body.getSessionID());
                         }
                     });
+                } else if (paramsHeader.msgCommand == MsgCommand.cancelCallSuccess) {
+                    Log.e("ppt","取消呼叫成功");
+                }
+                else if (paramsHeader.msgCommand == MsgCommand.registerSuccess) {
+                    Log.e("ppt","注册成功");
+                }
+                else if (paramsHeader.msgCommand == MsgCommand.registerFailed) {
+                    Log.e("ppt", "注册失败");
                 }
             }
 
