@@ -184,12 +184,8 @@ ExphoneManager.getInstance().addListener(new ExphoneListener() {
                     });
                 } else if (paramsHeader.msgCommand == MsgCommand.cancelCallSuccess) {
                     Log.e("ppt","取消呼叫成功");
-                }
-                else if (paramsHeader.msgCommand == MsgCommand.registerSuccess) {
-                    Log.e("ppt","注册成功");
-                }
-                else if (paramsHeader.msgCommand == MsgCommand.registerFailed) {
-                    Log.e("ppt", "注册失败");
+                }else if (paramsHeader.msgCommand == MsgCommand.SIPConflict) {
+                    Log.e("ppt", "SIP 设置冲突");
                 }
             }
 
