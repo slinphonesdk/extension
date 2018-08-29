@@ -1,6 +1,7 @@
 new version of Udp:
+=
 // 添加依赖<br>
-================
+-
 1.工程gradle.allprojects.repositories添加<br>
 ```
  maven { url "https://github.com/slinphonesdk/extension/raw/master" }
@@ -12,9 +13,9 @@ new version of Udp:
  implementation 'com.udp:extension:1.1.2'
 ```
 *打包需知：common打包后，依赖至extension，再打extension包*
--------------------------------
+-
 方法列表
-=======
+=
 ```
 // TODO: 初始化方法
 public ExPhoneManager(Context context, String serverIP, String serverPort)
@@ -65,7 +66,9 @@ public void stopSendHeart()
 public void destroy()
 
 ```
-DEMO
+DEMO代码块
+=
+
 ```
 public class RUdpMainActivity extends AppCompatActivity {
 
