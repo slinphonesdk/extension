@@ -26,7 +26,16 @@ public void addListener(ExPhoneListener exPhoneListener)
 // TODO: 响应收到 - 收到信息主机消息后,将信息标识返回
 public void response(String msgFlag, InetAddress fromAddress)
 
-// TODO: 注册成为移动分机
+// TODO: 床头分机获取对应门口分机IP
+public void fetchDoorSideIPAddress(RUdpCallBack rUdpCallBack)
+
+// TODO: 床头向门口发送开灯指令
+public void bSendOpenLight(String extMsg,String remoteIPAddress, RUdpCallBack rUdpCallBack)
+
+// TODO: 床头向门口发送关灯指令
+public void bSendCloseLight(String extMsg,String remoteIPAddress, RUdpCallBack rUdpCallBack)
+
+// TODO: 注册成为移动分机 - 门口默认注册
 public void registerMobile(RUdpCallBack rUdpCallBack)
 
 // TODO: 取消注册为非移动分机
@@ -213,7 +222,16 @@ public class RUdpMainActivity extends AppCompatActivity {
             exPhoneManager.response(msgFlag,fromAddress);
             msg = "SIP 设置有冲突";
             updateUI();
+        } else if (paramsModel.paramsHeader.msgCommand == MsgCommand.lightOpen) {//灯光开
+            exPhoneManager.response(msgFlag,fromAddress);
+            msg += "\n 收到灯光开指令, 附加信息为: "+paramsModel.paramsHeader.uuid;
+            updateUI();
+        } else if (paramsModel.paramsHeader.msgCommand == MsgCommand.lightClose) {//灯光关
+            exPhoneManager.response(msgFlag,fromAddress);
+            msg += "\n 收到灯光关指令";
+            updateUI();
         }
+
     }
 
 
@@ -234,6 +252,24 @@ public class RUdpMainActivity extends AppCompatActivity {
         } else if (paramsModel.paramsHeader.msgCommand == MsgCommand.registerFailed) {
             msg += "\n"+" 注册失败 "+paramsModel.paramsHeader.uuid;
             updateUI();
+        } else if (paramsModel.paramsHeader.msgCommand == MsgCommand.fetchDoorSideIPAddress) {
+            String remoteIPAddress = paramsModel.paramsHeader.uuid;
+            msg += "\n 门口分机IP: "+remoteIPAddress;
+            updateUI();
+//            exPhoneManager.bSendCloseLight();
+            exPhoneManager.bSendOpenLight("附加信息颜色--", remoteIPAddress, new RUdpCallBack() {
+                @Override
+                public void onFailure(String callMsg, IOException e) {
+                    msg += "\n ERROR " + callMsg + e.getMessage() ;
+                    updateUI();
+                }
+
+                @Override
+                public void onResponse(String CallMsg, String response) throws IOException {
+                    msg += "\n 开关灯命令成功" + response;
+                    updateUI();
+                }
+            });
         }
     }
 
@@ -368,6 +404,20 @@ public class RUdpMainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String CallMsg, String response) throws InvalidProtocolBufferException {
+                        sendResponseModel(response);
+                    }
+                });
+                break;
+            case 11:
+                exPhoneManager.fetchDoorSideIPAddress(new RUdpCallBack() {
+                    @Override
+                    public void onFailure(String callMsg, IOException e) {
+                        msg += "\n 获取门口分机IP出错";
+                        updateUI();
+                    }
+
+                    @Override
+                    public void onResponse(String CallMsg, String response) throws IOException {
                         sendResponseModel(response);
                     }
                 });
