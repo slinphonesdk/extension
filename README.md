@@ -23,6 +23,9 @@ public ExPhoneManager(Context context, String serverIP, String serverPort)
 // TODO: sip 注册状态 通话状态监听
 public void addListener(ExPhoneListener exPhoneListener)
 
+// TODO: sip call
+public void sipCall(String sipNumber)
+
 // TODO: 响应收到 - 收到信息主机消息后,将信息标识返回
 public void response(String msgFlag, InetAddress fromAddress)
 
