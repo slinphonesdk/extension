@@ -1,5 +1,5 @@
 new version of Udp:
-___version 1.1.6.5 天波医护SDK医护分机版本
+1.移除无效文件
 =
 // 添加依赖<br>
 -
@@ -11,7 +11,7 @@ ___version 1.1.6.5 天波医护SDK医护分机版本
 ```
 2.项目gradle.dependencies添加<br>
 ```
- implementation 'com.udp:extension:1.1.2'
+ implementation 'com.udp:extension:1.1.6.7'
 ```
 *打包需知：common打包后，依赖至extension，再打extension包*
 -
